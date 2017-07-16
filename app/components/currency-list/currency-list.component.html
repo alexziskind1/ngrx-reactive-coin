@@ -1,0 +1,9 @@
+<ActionBar title="Currency List" class="action-bar"></ActionBar>
+
+<ListView [items]="currencyList$ | async" class="list-group">
+    <ng-template let-item="item">
+        <StackLayout>
+            <Label class="list-group-item" [text]="item.name"></Label>
+        </StackLayout>
+    </ng-template>
+</ListView>
