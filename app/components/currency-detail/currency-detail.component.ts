@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router, Params, Route, ActivatedRoute } from "@angular/router";
 import { PageRoute } from "nativescript-angular";
 import { Store } from "@ngrx/store";
@@ -11,11 +11,17 @@ import { Coin } from "../../shared/models/coin.interface";
     moduleId: module.id,
     selector: 'currency-detail',
     templateUrl: 'currency-detail.component.html',
-    styleUrls: ['currency-detail.component.css']
+    styleUrls: ['currency-detail.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CurrencyDetailComponent implements OnInit {
+export class CurrencyDetailComponent {
 
+    @Input() selectedCurrency: Coin;
+    @Input() isLoading: boolean;
+
+
+    /*
     selectedCurrency$: Observable<Coin>;
     isLoading: boolean = false;
 
@@ -41,11 +47,6 @@ export class CurrencyDetailComponent implements OnInit {
         this.store.select(store => store.uiState.loading)
             .subscribe(loading => this.isLoading = loading);
 
-        //this.route.activatedRoute.switchMap(actRoute => actRoute.params)
-        /*
-            .switchMap(actRoute => actRoute.params)
-            .forEach(code =>
-                this.store.dispatch(new LoadCoinDataAction(code.toString())));
-    */
     }
+        */
 }

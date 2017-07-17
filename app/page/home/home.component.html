@@ -1,0 +1,3 @@
+<ActionBar title="Currency List" class="action-bar"> </ActionBar>
+
+<currency-list [currencyList]="currencyList$ | async" (selectedCurrency)="selectedCurrency($event)"></currency-list>

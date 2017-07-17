@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { INITIAL_CURRENCIES } from "../../shared/mocks/currency.mock";
 import { Currency } from "../../shared/models/currency.interface";
 import { CurrencyService } from "../../shared/services/currency.service";
@@ -12,11 +12,23 @@ import { Router } from "@angular/router";
 @Component({
     moduleId: module.id,
     selector: 'currency-list',
-    templateUrl: 'currency-list.component.html'
+    templateUrl: 'currency-list.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CurrencyListComponent implements OnInit, OnDestroy {
-    //currencyList$: Observable<Currency[]>;
+export class CurrencyListComponent {
+
+
+    @Input() currencyList: Currency[];
+    @Output() selectedCurrency = new EventEmitter<Currency>();
+
+
+    onItemTap(tappedItem) {
+        const selectedItem = this.currencyList[tappedItem.index];
+        this.selectedCurrency.emit(selectedItem);
+    }
+
+    /*
     currencyList$: Subscription;
     currencyList: Currency[];
     constructor(private store: Store<ApplicationState>, private router: Router) { }
@@ -38,4 +50,5 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
         const selectedCurrency = this.currencyList[args.index];
         this.router.navigate(['/currency', selectedCurrency.code]);
     }
+    */
 }

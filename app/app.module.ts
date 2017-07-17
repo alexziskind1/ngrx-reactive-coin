@@ -11,10 +11,11 @@ import { INITIAL_APPLICATION_STATE } from "./shared/models/application-state.int
 
 import { EffectsModule } from "@ngrx/effects";
 import { CurrencyEffects } from "./shared/store/effects/currency.effects";
-import { CurrencyDetailModule } from "./components/currency-detail/currency-detail.module";
 import { UIStateService } from "./shared/services/ui-state.service";
 import { rootReducer } from "./shared/store/reducers/reducers";
 import { UIStateEffects } from "./shared/store/effects/ui-state.effects";
+import { HomeModule } from "./page/home/home.module";
+import { DetailModule } from "./page/detail/detail.module";
 
 
 @NgModule({
@@ -25,8 +26,8 @@ import { UIStateEffects } from "./shared/store/effects/ui-state.effects";
         NativeScriptModule,
         NativeScriptHttpModule,
         AppRoutingModule,
-        CurrencyListModule,
-        CurrencyDetailModule,
+        HomeModule,
+        DetailModule,
         StoreModule.provideStore(rootReducer, INITIAL_APPLICATION_STATE),
         EffectsModule.run(CurrencyEffects),
         EffectsModule.run(UIStateEffects)
