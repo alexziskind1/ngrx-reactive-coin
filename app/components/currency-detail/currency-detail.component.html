@@ -1,0 +1,9 @@
+<StackLayout>
+    <Label [class.visible]="!isLoading" [text]="'Base: ' + (selectedCurrency$ | async)?.ticker?.base"></Label>
+    <Label [class.visible]="!isLoading" [text]="'Price: ' + (selectedCurrency$ | async)?.ticker?.price"></Label>
+    <Label [class.visible]="!isLoading" [text]="'Target: ' + (selectedCurrency$ | async)?.ticker?.target"></Label>
+    <Label [class.visible]="!isLoading" [text]="'Change: ' + (selectedCurrency$ | async)?.ticker?.change"></Label>
+    <Label [class.visible]="!isLoading" [text]="'Volume: ' + (selectedCurrency$ | async)?.ticker?.volume"></Label>
+
+    <ActivityIndicator [busy]="isLoading"> </ActivityIndicator>
+</StackLayout>

@@ -3,16 +3,23 @@ import { ApplicationState } from "../../../shared/models/application-state.inter
 import { Action } from "@ngrx/store";
 import { LOAD_CURRENCY_LIST, CURRENCY_LIST_LOADED } from "../../../shared/store/actions/currency.actions";
 import { INITIAL_CURRENCIES } from "../../../shared/mocks/currency.mock";
-export function currencyReducer(state: ApplicationState, action: Action) {
+import { CurrencyState, INITIAL_CURRENCY_STATE } from "../../../shared/models/currency-state.interface";
+
+export function currencyReducer(
+    state: CurrencyState = INITIAL_CURRENCY_STATE,
+    action: Action): CurrencyState {
+
     switch (action.type) {
         case LOAD_CURRENCY_LIST:
             const newState = Object.assign({}, state);
-            newState.currencies = INITIAL_CURRENCIES;
-            return newState.currencies;
+            //newState.currencies = INITIAL_CURRENCIES;
+            return newState;
+
         case CURRENCY_LIST_LOADED:
             const currencyState = Object.assign({}, state);
-            currencyState.currencies = action.payload;
-            return currencyState.currencies;
+            currencyState.currencyList = action.payload;
+            return currencyState;
+
         default:
             return state;
     }
